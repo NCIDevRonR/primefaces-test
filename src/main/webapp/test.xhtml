@@ -34,10 +34,6 @@
             </h:panelGrid>
         </p:panel>
 
-         <p:outputPanel id="pdfViewer">
-            <p:media id="docView" width="1000px" height="400px" player="pdf" zoom="page-width"
-                value="#{listingCtrlr.streamedContent}" cache="false" />
-        </p:outputPanel>  
     </h:form>
 
 
@@ -45,16 +41,12 @@
     <p:dialog header="House Listing Viewer" widgetVar="listingViewer" modal="true" appendTo="@(body)">
         <h:form id="reportViewerForm">
 
-            <h:panelGrid id="reportViewer" columns="1" cellpadding="5"
-                columnClasses="ui-grid-col-5.5,ui-grid-col-1 middleButtons,ui-grid-col-5.5">
-                <p:column>
-                    <!--   <p:media id="docView" width="1000px" height="400pxc" player="pdf" zoom="page-width" value="#{listingCtrlr.streamedContent}" cache="true" />  -->
-                </p:column>
-                <p:column>
-                    <p:commandButton id="btnCloseRptViewer" process="reportViewer" value="Close"
-                        onclick="PF('listingViewer').hide();" />
-                </p:column>
-            </h:panelGrid>
+            <p:outputPanel id="pdfViewer">
+                <p:media id="docView" width="1000px" height="400px" player="pdf" zoom="page-width"
+                    value="#{listingCtrlr.streamedContent}" cache="false" />
+            </p:outputPanel>  
+            <p:commandButton id="btnCloseRptViewer" process="pdfViewer" value="Close"
+            onclick="PF('listingViewer').hide();" />
         </h:form>
     </p:dialog>
 
