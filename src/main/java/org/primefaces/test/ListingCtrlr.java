@@ -88,6 +88,7 @@ public class ListingCtrlr implements Serializable {
             addMessage(SELECT_LISTING, "House Listing is created!");
             //I added the following two lines to get the viewer dialog to appear.
             PrimeFaces current = PrimeFaces.current();
+            current.ajax().update("reportViewerForm");
             current.executeScript("PF('listingViewer').show();");            
         }
     }
