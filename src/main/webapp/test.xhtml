@@ -1,235 +1,133 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
-    <h:head>
-        <title>PrimeFaces Test</title>
-        <h:outputScript name="test.js"/>
-        <h:outputScript name="myapp.js"/>
-        <h:outputStylesheet name="test.css"/>
-        <h:outputStylesheet name="myapp.css"/>
-        <h:outputStylesheet name="primeflex.css"/>
-    </h:head>
-    <h:body>
-        <pe:layout fullPage="true">
-            <pe:layoutPane position="west">
-                Left
-            </pe:layoutPane>
-            <pe:layoutPane position="center">
-                <div class="ui-layout-north">
-                    <h1>#{testView.string}</h1>
-                    <h:form id="frmTest">
-                        <div class="card">
-                            <h5>Advanced</h5>
-                            <div class="formgrid grid">
-                                <div class="field col-12 md:col-6">
-                                    <label for="firstname6">Firstname</label>
-                                    <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="lastname6">Lastname</label>
-                                    <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12">
-                                    <label for="address">Address</label>
-                                    <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="city">City</label>
-                                    <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="state6">State</label>
-                                    <select id="state6" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" style="appearance: auto">
-                                        <option>Arizona</option>
-                                        <option>California</option>
-                                        <option>Florida</option>
-                                        <option>Ohio</option>
-                                        <option>Washington</option>
-                                    </select>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="zip">Zip</label>
-                                    <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <h5>Advanced</h5>
-                            <div class="formgrid grid">
-                                <div class="field col-12 md:col-6">
-                                    <label for="firstname6">Firstname</label>
-                                    <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="lastname6">Lastname</label>
-                                    <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12">
-                                    <label for="address">Address</label>
-                                    <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="city">City</label>
-                                    <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="state1">State</label>
-                                    <select id="state1" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" style="appearance: auto">
-                                        <option>Arizona</option>
-                                        <option>California</option>
-                                        <option>Florida</option>
-                                        <option>Ohio</option>
-                                        <option>Washington</option>
-                                    </select>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="zip">Zip</label>
-                                    <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <h5>Advanced</h5>
-                            <div class="formgrid grid">
-                                <div class="field col-12 md:col-6">
-                                    <label for="firstname6">Firstname</label>
-                                    <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="lastname6">Lastname</label>
-                                    <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12">
-                                    <label for="address">Address</label>
-                                    <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="city">City</label>
-                                    <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="state2">State</label>
-                                    <select id="state2" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" style="appearance: auto">
-                                        <option>Arizona</option>
-                                        <option>California</option>
-                                        <option>Florida</option>
-                                        <option>Ohio</option>
-                                        <option>Washington</option>
-                                    </select>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="zip">Zip</label>
-                                    <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <h5>Advanced</h5>
-                            <div class="formgrid grid">
-                                <div class="field col-12 md:col-6">
-                                    <label for="firstname6">Firstname</label>
-                                    <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="lastname6">Lastname</label>
-                                    <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12">
-                                    <label for="address">Address</label>
-                                    <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="city">City</label>
-                                    <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="state3">State</label>
-                                    <select id="state3" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" style="appearance: auto">
-                                        <option>Arizona</option>
-                                        <option>California</option>
-                                        <option>Florida</option>
-                                        <option>Ohio</option>
-                                        <option>Washington</option>
-                                    </select>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="zip">Zip</label>
-                                    <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <h5>Advanced</h5>
-                            <div class="formgrid grid">
-                                <div class="field col-12 md:col-6">
-                                    <label for="firstname6">Firstname</label>
-                                    <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="lastname6">Lastname</label>
-                                    <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12">
-                                    <label for="address">Address</label>
-                                    <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="city">City</label>
-                                    <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="state4">State</label>
-                                    <select id="state4" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" style="appearance: auto">
-                                        <option>Arizona</option>
-                                        <option>California</option>
-                                        <option>Florida</option>
-                                        <option>Ohio</option>
-                                        <option>Washington</option>
-                                    </select>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="zip">Zip</label>
-                                    <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <h5>Advanced</h5>
-                            <div class="formgrid grid">
-                                <div class="field col-12 md:col-6">
-                                    <label for="firstname6">Firstname</label>
-                                    <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="lastname6">Lastname</label>
-                                    <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12">
-                                    <label for="address">Address</label>
-                                    <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="city">City</label>
-                                    <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="state5">State</label>
-                                    <select id="state5" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" style="appearance: auto">
-                                        <option>Arizona</option>
-                                        <option>California</option>
-                                        <option>Florida</option>
-                                        <option>Ohio</option>
-                                        <option>Washington</option>
-                                    </select>
-                                </div>
-                                <div class="field col-12 md:col-3">
-                                    <label for="zip">Zip</label>
-                                    <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                                </div>
-                            </div>
-                        </div>
-                    </h:form>
-                </div>
-            </pe:layoutPane>
-        </pe:layout>
-    </h:body>
-</html>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+          
+        <ui:define name="title">
+            <h:outputText value="MyApp: Add Person"></h:outputText>
+        </ui:define>
+
+    <p:tooltip />
+    
+    <ui:define name="body">
+
+        <h:form id="pfaForm">
+      
+          <p:panel id="pfaPanel" header="Add Person" style="margin-bottom:50px;">
+              <p:panelGrid columns="4">
+                <f:facet name="header">
+                    <div align="left">
+                      Person
+                    </div>
+                </f:facet>
+                <p:outputLabel for="lastname" value="Last Name: " />
+                <p:inputText requiredMessage="Last Name is Required." id="lastname" size="30" maxlength="30" required="true" value="#{addPerson.lastName}" title="Enter Last Name."/>
+
+                <p:outputLabel for="homephone"  value="Home Telephone: " />
+                <p:inputMask requiredMessage="Home Phone is Required." id="homephone" required="false"  value="#{addPerson.homePhone}" mask="9999999999" title="Enter Home Phone Number."/>
+
+                <p:outputLabel for="firstname" value="First Name:" />
+                <p:inputText requiredMessage="First Name is Required." id="firstname" size="30" maxlength="30" required="true" value="#{addPerson.firstName}" title="Enter First Name."/>
+                
+                <p:outputLabel for="workphone"  value="Work Telephone: " />
+                <p:inputMask requiredMessage="Work Phone is Required." id="workphone" required="false" value="#{addPerson.workPhone}" mask="9999999999" title="Enter Work Phone Number."/>
+
+                <p:outputLabel for="middlename" value="Middle Name:" />
+                <p:inputText requiredMessage="Middle Name is Required." id="middlename" size="30" maxlength="30" required="false" value="#{addPerson.middleName}" title="Enter Middle Name."/>
+                
+                <p:outputLabel value="Email Address:" for="eMail" />
+                <p:inputText id="eMail" value="#{addPerson.email}" title="Enter Email Address."
+                                    size="30"
+                                     required="true" 
+                                     requiredMessage="Email Address is a required field." 
+                                     validatorMessage="Invalid email format.">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </p:inputText>
+                
+              </p:panelGrid>
+              <p:message for="lastname"/>
+              <p:message for="homephone"/>
+              <p:message for="firstname"/>
+              <p:message for="workphone"/>
+              <p:message for="middlename"/>
+              <p:message for="eMail"/>
+              <p:separator></p:separator>
+              <p:panelGrid columns="2">
+                  <f:facet name="header">
+                    <div align="left">
+                      User
+                    </div>
+                  </f:facet>
+                <p:outputLabel for="username"  value="User Id: " />
+                <p:inputText requiredMessage="Username is Required." id="username" size="10" maxlength="10" required="true" value="#{addPerson.nameOfUser}" title="Enter Username."/>
+
+                <p:outputLabel for="description"  value="Description: " />
+                <p:inputTextarea rows="3" cols="70" maxlength="255" id="description" value="#{addPerson.description}" autoResize="true" title="Enter Description."/>
+
+                <p:outputLabel for="logcd" value="Log Code: " />
+                <p:selectOneRadio requiredMessage="Log Code is Required." id="logcd" value="#{addPerson.logCd}" required="true" >
+                    <f:selectItem itemLabel="Yes" itemValue="Y" />
+                    <f:selectItem itemLabel="No" itemValue="N" />
+                </p:selectOneRadio>
+              </p:panelGrid>
+              <p:message for="username"/>
+              <p:message for="logcd"/>
+              <p:separator></p:separator>
+              <p:panelGrid columns="2">
+                  <f:facet name="header">
+                    <div align="left">
+                      Associate User to Access Group
+                    </div>
+                  </f:facet>
+                <p:outputLabel for="accgrpid1"  value="Access Group 1: " />
+    		<p:selectOneMenu id="accgrpid1"  value="#{addPerson.accGrpId1}" required="true" requiredMessage="Access Group is Required." filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="Select One" />
+    			<f:selectItems  value="#{addPerson.items}" var="ag"
+                                       itemLabel="#{ag.accGrpNm}" itemValue="#{ag.accGrpId}"/>
+    		</p:selectOneMenu>
+                        
+                <p:outputLabel for="accgrpid2"  value="Access Group 2: " />
+    		<p:selectOneMenu id="accgrpid2" value="#{addPerson.accGrpId2}" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="Select One" />
+    			<f:selectItems value="#{addPerson.items}" var="ag"
+                                       itemLabel="#{ag.accGrpNm}" itemValue="#{ag.accGrpId}"/>
+    		</p:selectOneMenu>
+
+                <p:outputLabel for="accgrpid3"  value="Access Group 3: " />
+    		<p:selectOneMenu id="accgrpid3" value="#{addPerson.accGrpId3}" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="Select One" />
+    			<f:selectItems value="#{addPerson.items}" var="ag"
+                                       itemLabel="#{ag.accGrpNm}" itemValue="#{ag.accGrpId}"/>
+    		</p:selectOneMenu>
+
+                <p:outputLabel for="accgrpid4"  value="Access Group 4: " />
+    		<p:selectOneMenu id="accgrpid4" value="#{addPerson.accGrpId4}" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemValue="#{null}" itemLabel="Select One" />                    
+    			<f:selectItems  value="#{addPerson.items}" var="ag"
+                                       itemLabel="#{ag.accGrpNm}" itemValue="#{ag.accGrpId}"/>
+    		</p:selectOneMenu>
+            </p:panelGrid>
+            <p:message for="accgrpid1"/>
+            <p:separator></p:separator>
+            
+            <p:message for="pfaForm"/>
+
+            <p:commandButton actionListener="#{addPerson.create}" update="pfaPanel" value="Save" oncomplete="timerReset(); if (!args.validationFailed) {PF('compDialog').show()}" icon="ui-icon-check"/>
+            <p:commandButton process="@this" value="Reset Form" actionListener="#{addPerson.reset()}" resetValues="true" update="pfaForm" icon="ui-icon-check" oncomplete="timerReset();"/>
+            </p:panel>
+
+        </h:form>
+        
+        <p:confirmDialog id="pfaCompDlg" appendTo="@(body)"
+            message="Fast Add Complete record inserted successfully."
+            header="Record Inserted Successfully." severity="alert" widgetVar="compDialog">
+            <p:commandButton   actionListener="#{addPerson.reset()}" value="OK" update=":pfaForm" oncomplete="PF('compDialog').hide();"/>
+        </p:confirmDialog>           
+
+
+    </ui:define>   
+</ui:composition>
+
