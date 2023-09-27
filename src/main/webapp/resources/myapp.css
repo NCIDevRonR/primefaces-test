@@ -72,7 +72,9 @@ ul.ui-menu-child
     width: auto !important;
     min-width: 175px;
 }
-
+.ui-panelgrid .p-grid .ui-panelgrid-cell, .ui-panelgrid .grid .ui-panelgrid-cell, .ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
+    border: 1px solid #dee2e6;
+}
 .enhlogrecs
 {
     background: lightskyblue;
