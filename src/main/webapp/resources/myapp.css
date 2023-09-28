@@ -23,22 +23,22 @@
 }
 
 .exit-icon {
-    background: url(./images/exit.gif) no-repeat !important;
+    background: url(exit.gif) no-repeat !important;
     height: 20px;
     width: 25px;
 }
 .help-icon {
-    background: url(./images/help.gif) no-repeat !important;
+    background: url(help.gif) no-repeat !important;
     height: 25px;
     width: 25px;
 }
 .user-guide-icon {
-    background: url(./images/UserGuide.gif) no-repeat !important;
+    background: url(UserGuide.gif) no-repeat !important;
     height: 25px;
     width: 36px;
 }
 .timer-icon {
-    background: url(./images/timer.gif) no-repeat !important;
+    background: url(timer.gif) no-repeat !important;
     height: 25px;
     width: 25px;
 }

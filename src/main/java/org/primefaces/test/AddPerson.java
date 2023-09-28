@@ -1,10 +1,6 @@
 package org.primefaces.test;
 
 import java.io.Serializable;
-//import com.nciinc.ssda.entities.AccGrp;
-//import com.nciinc.ssda.dao.PersonFastAddDAO;
-//import com.nciinc.ssda.util.SSDAException;
-//import com.nciinc.ssda.util.StringFixes;
 import java.util.Date;
 //import javax.ejb.EJB;
 import java.util.List;
@@ -204,22 +200,6 @@ public class AddPerson implements Serializable {
         this.accgrpid4 = accgrpid4;
     }
 
-//    public void create() {
-// 
-//        try{
-//            if (getAccGrpId2()==null)setAccGrpId2("0");
-//            if (getAccGrpId3()==null)setAccGrpId3("0");
-//            if (getAccGrpId4()==null)setAccGrpId4("0");
-//            pfaEJBean.insert("sbt_esc_fast_add", sysId, userName, StringFixes.UNKNOWN, new Date(), getLastName(), getMiddleName(), 
-//                    getFirstName(), getRankId(), getHomePhone(), getWorkPhone(), getFiveDigitPin(), getNameOfUser(), getDescription(), 
-//                    getLogCd(), getAccGrpId1(), getAccGrpId2(), getAccGrpId3(), getAccGrpId4(), getEmail());
-//            
-//        }catch(SSDAException ex){
-//            LOGGER.debug(StringFixes.SSDA_EXCEPTION);
-//            FacesContext.getCurrentInstance().addMessage("pfaForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(),ex.getMessage()));
-//            FacesContext.getCurrentInstance().validationFailed();
-//        }   
-//    }
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
