@@ -1,23 +1,86 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 
-    <h:head>
-        <title>PrimeFaces Test</title>
-        <h:outputScript name="test.js" />
-        <h:outputStylesheet name="test.css" />
-    </h:head>
-    <h:body>
+    <ui:composition >
 
-        <h1>#{testView.string}</h1>
-        <h:form id="frmTest">
-            
-        </h:form>
+        <pe:layout fullPage="true">
+            <pe:layoutPane position="center">
+                <h:head>
+                    <title>City Info</title>
+                    <h:outputScript name="test.js"/>
+                    <h:outputScript name="myapp.js"/>
+                    <h:outputStylesheet name="test.css"/>
+                    <h:outputStylesheet name="myapp.css"/>
+                    <h:outputStylesheet name="primeflex.css"/>
+                </h:head>
+                <h:body>
+                    <h:form id="CityInfoForm">
+                        
+                        <p:panel header="City Info" >
+                            <p:dataTable id="datalist" value="#{cityInfoController.items}" var="item" 
+                                         selectionMode="single" selection="#{cityInfoController.selected}"
+                                         widgetVar="vdatalist"
+                                         rowKey="#{item.id}"
+                                         paginator="true"
+                                         paginatorPosition="bottom"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         sortMode="multiple"
+                                         >
 
-    </h:body>
+                                <p:ajax event="rowSelect"   update="createButton editButton deleteButton"/>
+                                <p:ajax event="rowUnselect" update="createButton editButton deleteButton"/>
+
+                                <p:column sortBy="#{item.zipCode}" filterBy="#{item.zipCode}" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="Zip Code"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.zipCode}"/>
+                                </p:column>
+                                <p:column sortBy="#{item.cityName}" filterBy="#{item.cityName}" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="City Name"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.cityName}"/>
+                                </p:column>
+                                <p:column sortBy="#{item.stateName}" filterBy="#{item.stateName}" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="State Name"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.stateName}"/>
+                                </p:column>
+                                <p:column sortBy="#{item.stateAbbrev}" filterBy="#{item.stateAbbrev}" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="State Abbrev."/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.stateAbbrev}"/>
+                                </p:column>
+                                <p:column sortBy="#{item.county}" filterBy="#{item.county}" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="County"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.county}"/>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="Create" actionListener="#{cityInfoController.doNothing()}" resetValues="true" />                          
+                                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Edit" actionListener="#{cityInfoController.doNothing()}" resetValues="true" disabled="#{empty cityInfoController.selected}" />
+                                    <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="Delete" disabled="#{empty cityInfoController.selected}" />
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+
+
+                </h:body>
+            </pe:layoutPane>
+        </pe:layout>
+    </ui:composition>
+
 </html>
