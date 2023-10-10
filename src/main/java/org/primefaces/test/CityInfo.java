@@ -20,6 +20,10 @@ public class CityInfo {
         this.id = id;
     }
 
+    public CityInfo() {
+
+    }
+    
     
     public CityInfo(int id, String zipCode, String cityName, String stateName, String stateAbbrev, String county) {
         this.id = id;

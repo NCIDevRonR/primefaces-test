@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.CloseEvent;
 
 @Named("cityInfoController")
 @SessionScoped
@@ -45,9 +48,60 @@ public class CityInfoController implements Serializable {
     }
 
     public void doNothing() {
-        
+
     }
 
+    public CityInfo openCreate() {
+        selected = new CityInfo();
+        return selected;
+    }
+
+    
+    public void save() {
+        if (this.selected.getId() == 0) {
+            selected.setId(this.items.size() + 1);
+            this.items.add(selected);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Added"));
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Updated"));
+        }
+
+        PrimeFaces.current().executeScript("PF('manageCityInfoDialog').hide()");
+        PrimeFaces.current().ajax().update("form:messages", "form:dt-cityInfo");
+    }
+    
+    
+    
+    
+    
+
+    public String getDeleteButtonMessage() {
+        if (hasSelectedRow()) {
+            return "1 row selected";
+        }
+
+        return "Delete";
+    }
+
+    public boolean hasSelectedRow() {
+        return this.selected != null;
+    }
+
+    public void destroy() {
+        this.items.remove(selected);
+        this.setSelected(null);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Removed"));
+        PrimeFaces.current().ajax().update("form:messages", "form:dt-cityInfo");
+    }
+
+    public void handleClose(CloseEvent event) {
+        this.setSelected(null);
+    }
+
+    public void handleCloseEdit(CloseEvent event) {
+        this.clearItems();
+    }
 
     private List<CityInfo> getCityInfo() {
         List<CityInfo> listOfCities = new ArrayList<>();
@@ -85,8 +139,7 @@ public class CityInfoController implements Serializable {
         //Get city info from a HUGE text file.
         return listOfCities;
     }
-    
-   
+
     private List<String> readInFile(String filePath) throws IOException {
         // list that holds strings of a file
         List<String> listOfStrings
