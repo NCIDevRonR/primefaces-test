@@ -32,7 +32,7 @@
                             <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
                             <p:resetInput target=":dialogs:manage-cityInfo" />
                         </p:commandButton>
-                        <p:commandButton id="btnDeleteCityInfo" value="#{cityInfoController.deleteButtonMessage}"
+                        <p:commandButton id="btnDeleteCityInfo" value="Delete"
                                          icon="pi pi-trash" actionListener="#{cityInfoController.destroy}"
                                          styleClass="ui-button-danger" disabled="#{!cityInfoController.hasSelectedRow()}" update="@this">
                             <p:confirm header="Confirmation" message="Delete #{cityInfoController.selected.cityName}, #{cityInfoController.selected.stateName}?"
