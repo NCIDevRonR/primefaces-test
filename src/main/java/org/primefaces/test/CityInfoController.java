@@ -64,7 +64,7 @@ public class CityInfoController implements Serializable {
 
     public void save() {
         if (this.selected.getId() == 0) {
-            selected.setId(this.items.size() + 1);
+            selected.setId(this.items.size() + 5);
             this.items.add(selected);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Added"));
         } else {
@@ -121,14 +121,8 @@ public class CityInfoController implements Serializable {
                 if (!stateName.isEmpty()) {
                     CityInfo cityInfo = new CityInfo(eachId, zipCode, cityName, stateName, stateAbbrev, county);
                     listOfCities.add(cityInfo);
-                    if (firstFewCities < 300) {
-//                        System.out.println(cityInfo.getCityName() + ",  " + cityInfo.getStateName() + ",  "
-//                                + cityInfo.getStateAbbrev() + ",  " + cityInfo.getCounty() + ",  " + cityInfo.getZipCode());
-                        firstFewCities++;
-                    }
                 }
             }
-            System.out.println(listOfCities.size() + " cities.");
             return listOfCities;
 
         } catch (IOException e) {

@@ -25,16 +25,19 @@
                                          styleClass="ui-button-success" style="margin-right: .5rem">
                             <p:resetInput target=":dialogs:manage-cityInfo" />
                         </p:commandButton>
-                            <p:commandButton id="btnEditCityInfo" value="Edit"
+                        <p:commandButton id="btnEditCityInfo" value="Edit"
                                          icon="pi pi-pencil" actionListener="#{cityInfoController.openEdit}"
-                                         update=":dialogs:manage-cityInfo" 
+                                         update=":dialogs:manage-cityInfo" disabled="#{!cityInfoController.hasSelectedRow()}"
                                          styleClass="edit-button ui-button-success" process="@this">
                             <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
                             <p:resetInput target=":dialogs:manage-cityInfo" />
+                            <p:autoUpdate on="selection-changed"/>
                         </p:commandButton>
                         <p:commandButton id="btnDeleteCityInfo" value="Delete"
                                          icon="pi pi-trash" actionListener="#{cityInfoController.destroy}"
-                                         styleClass="ui-button-danger" disabled="#{!cityInfoController.hasSelectedRow()}" update="@this">
+                                         styleClass="ui-button-danger" disabled="#{!cityInfoController.hasSelectedRow()}" update="@this @obs(selection-changed)">
+                            <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
+                            <p:autoUpdate on="selection-changed"/>
                             <p:confirm header="Confirmation" message="Delete #{cityInfoController.selected.cityName}, #{cityInfoController.selected.stateName}?"
                                        icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
@@ -53,11 +56,11 @@
                         </div>
                     </f:facet>
 
-                    <p:ajax event="rowSelect" update=":form:btnDeleteCityInfo" />
-                    <p:ajax event="rowUnselect" update=":form:btnDeleteCityInfo" />
-                    <p:ajax event="rowSelectCheckbox" update=":form:btnDeleteCityInfo" />
-                    <p:ajax event="rowUnselectCheckbox" update=":form:btnDeleteCityInfo" />
-                    <p:ajax event="toggleSelect" update=":form:btnDeleteCityInfo" />
+                    <p:ajax event="rowSelect" update="@obs(selection-changed)" />
+                    <p:ajax event="rowUnselect" update="@obs(selection-changed)" />
+                    <p:ajax event="rowSelectCheckbox" update="@obs(selection-changed)" />
+                    <p:ajax event="rowUnselectCheckbox" update="@obs(selection-changed)" />
+                    <p:ajax event="toggleSelect" update="@obs(selection-changed)" />
 
                     <p:column headerText="Zip Code" sortBy="#{item.zipCode}" filterBy="#{item.zipCode}">
                         <h:outputText value="#{item.zipCode}"/>
@@ -132,7 +135,7 @@
                 <p:confirmDialog widgetVar="deleteCityInfoDialog" showEffect="fade" width="300"
                                  message="Delete this city info?" header="Confirm" severity="warn">
                     <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{cityInfoController.destroy}"
-                                     process="@this" update=":form:btnDeleteCityInfo"
+                                     process="@this" update="@obs(selection-changed)"
                                      oncomplete="PF('deleteCityInfoDialog').hide()" />
                     <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
                                      onclick="PF('deleteCityInfoDialog').hide()" />
