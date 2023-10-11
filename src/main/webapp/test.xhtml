@@ -25,10 +25,17 @@
                                          styleClass="ui-button-success" style="margin-right: .5rem">
                             <p:resetInput target=":dialogs:manage-cityInfo" />
                         </p:commandButton>
+                            <p:commandButton id="btnEditCityInfo" value="Edit"
+                                         icon="pi pi-pencil" actionListener="#{cityInfoController.openEdit}"
+                                         update=":dialogs:manage-cityInfo" 
+                                         styleClass="edit-button ui-button-success" process="@this">
+                            <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
+                            <p:resetInput target=":dialogs:manage-cityInfo" />
+                        </p:commandButton>
                         <p:commandButton id="btnDeleteCityInfo" value="#{cityInfoController.deleteButtonMessage}"
                                          icon="pi pi-trash" actionListener="#{cityInfoController.destroy}"
                                          styleClass="ui-button-danger" disabled="#{!cityInfoController.hasSelectedRow()}" update="@this">
-                            <p:confirm header="Confirmation" message="Delete the selected city info?"
+                            <p:confirm header="Confirmation" message="Delete #{cityInfoController.selected.cityName}, #{cityInfoController.selected.stateName}?"
                                        icon="pi pi-exclamation-triangle" />
                         </p:commandButton>
                     </p:toolbarGroup>

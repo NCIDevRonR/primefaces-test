@@ -51,30 +51,29 @@ public class CityInfoController implements Serializable {
 
     }
 
+    public void openEdit() {
+        if (selected != null) {
+            PrimeFaces.current().executeScript("PF('manageCityInfoDialog').show()");
+        }
+    }
+
     public CityInfo openCreate() {
         selected = new CityInfo();
         return selected;
     }
 
-    
     public void save() {
         if (this.selected.getId() == 0) {
             selected.setId(this.items.size() + 1);
             this.items.add(selected);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Added"));
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Updated"));
         }
 
         PrimeFaces.current().executeScript("PF('manageCityInfoDialog').hide()");
         PrimeFaces.current().ajax().update("form:messages", "form:dt-cityInfo");
     }
-    
-    
-    
-    
-    
 
     public String getDeleteButtonMessage() {
         if (hasSelectedRow()) {
