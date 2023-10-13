@@ -4,10 +4,10 @@
 }
 .ui-layout-north {
     z-index: 20 !important;
-    overflow: hidden !important;;
+    overflow: visible !important;;
 }
 .ui-layout-north .ui-layout-unit-content {
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 .ui-layout-pane {
     padding: 0;
