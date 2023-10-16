@@ -18,11 +18,6 @@ public class AddPerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-//    @EJB
-//    private transient PersonFastAddDAO pfaEJBean;
-//    private final String userName = SecurityUtils.getSubject().getPrincipal().toString();
-//    private final String sysId = SecurityUtils.getSubject().getSession().getAttribute("sysId").toString();
-//    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(AddPerson.class.getName());
     private String lastname;
     private String firstname;
     private String middlename;
