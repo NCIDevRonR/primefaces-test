@@ -5,149 +5,162 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 
-    <h:head>
-        <title>PrimeFaces Test</title>
-        <h:outputScript name="test.js" />
-        <h:outputStylesheet name="test.css" />
-    </h:head>
-    <h:body>
+    <ui:composition template="myapptemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="MyApp: City Info"></h:outputText>
+        </ui:define>
 
-        <div class="card crud-demo">
-            <h:form id="form">
-                <p:growl id="messages" showDetail="true" />
+        <ui:define name = "body"> 
+            <pe:layout fullPage="true">
+                <div class="ui-layout-center">
+                    <h:head>
+                        <title>PrimeFaces Test</title>
+                        <h:outputScript name="test.js" />
+                        <h:outputStylesheet name="test.css" />
+                    </h:head>
+                    <h:body>
 
-                <p:toolbar>
-                    <p:toolbarGroup>
-                        <p:commandButton value="Create" icon="pi pi-plus" actionListener="#{cityInfoController.openCreate}"
-                                         update=":dialogs:manage-cityInfo" oncomplete="PF('manageCityInfoDialog').show()"
-                                         styleClass="ui-button-success" style="margin-right: .5rem">
-                            <p:resetInput target=":dialogs:manage-cityInfo" />
-                        </p:commandButton>
-                        <p:commandButton id="btnEditCityInfo" value="Edit"
-                                         icon="pi pi-pencil" actionListener="#{cityInfoController.openEdit}"
-                                         update=":dialogs:manage-cityInfo" disabled="#{!cityInfoController.hasSelectedRow()}"
-                                         styleClass="edit-button ui-button-success" process="@this">
-                            <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
-                            <p:resetInput target=":dialogs:manage-cityInfo" />
-                            <p:autoUpdate on="selection-changed"/>
-                        </p:commandButton>
-                        <p:commandButton id="btnDeleteCityInfo" value="Delete"
-                                         icon="pi pi-trash" actionListener="#{cityInfoController.destroy}"
-                                         styleClass="ui-button-danger" disabled="#{!cityInfoController.hasSelectedRow()}" update="@this @obs(selection-changed)">
-                            <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
-                            <p:autoUpdate on="selection-changed,selection-edited"/>
-                            <p:confirm header="Confirmation" message="Delete #{cityInfoController.selected.cityName}, #{cityInfoController.selected.stateName}?"
-                                       icon="pi pi-exclamation-triangle" />
-                        </p:commandButton>
-                    </p:toolbarGroup>
-                </p:toolbar>
+                        <div class="card crud-demo">
+                            <h:form id="form">
+                                <p:growl id="messages" showDetail="true" />
 
-                <p:dataTable id="dt-cityInfo" widgetVar="dtCityInfo" value="#{cityInfoController.items}" var="item"
-                             reflow="true" styleClass="cityInfo-table" selectionMode="single" selection="#{cityInfoController.selected}"
-                             rowKey="#{item.id}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom">
-                    <f:facet name="header">
-                        <div class="cityInfo-table-header">
-                            <span style="font-weight: bold">CITY INFO</span>
-                            <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
-                                <p:inputText id="globalFilter" onkeyup="PF('dtCityInfo').filter()" placeholder="Search" />
-                            </span>
+                                <p:toolbar>
+                                    <p:toolbarGroup>
+                                        <p:commandButton value="Create" icon="pi pi-plus" actionListener="#{cityInfoController.openCreate}"
+                                                         update=":dialogs:manage-cityInfo" oncomplete="PF('manageCityInfoDialog').show()"
+                                                         styleClass="ui-button-success" style="margin-right: .5rem">
+                                            <p:resetInput target=":dialogs:manage-cityInfo" />
+                                        </p:commandButton>
+                                        <p:commandButton id="btnEditCityInfo" value="Edit"
+                                                         icon="pi pi-pencil" actionListener="#{cityInfoController.openEdit}"
+                                                         update=":dialogs:manage-cityInfo" disabled="#{!cityInfoController.hasSelectedRow()}"
+                                                         styleClass="edit-button ui-button-success" process="@this">
+                                            <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
+                                            <p:resetInput target=":dialogs:manage-cityInfo" />
+                                            <p:autoUpdate on="selection-changed"/>
+                                        </p:commandButton>
+                                        <p:commandButton id="btnDeleteCityInfo" value="Delete"
+                                                         icon="pi pi-trash" actionListener="#{cityInfoController.destroy}"
+                                                         styleClass="ui-button-danger" disabled="#{!cityInfoController.hasSelectedRow()}" update="@this @obs(selection-changed)">
+                                            <f:setPropertyActionListener value="#{cityInfoController.selected}" target="#{cityInfoController.selected}" />
+                                            <p:autoUpdate on="selection-changed,selection-edited"/>
+                                            <p:confirm header="Confirmation" message="Delete #{cityInfoController.selected.cityName}, #{cityInfoController.selected.stateName}?"
+                                                       icon="pi pi-exclamation-triangle" />
+                                        </p:commandButton>
+                                    </p:toolbarGroup>
+                                </p:toolbar>
+
+                                <p:dataTable id="dt-cityInfo" widgetVar="dtCityInfo" value="#{cityInfoController.items}" var="item"
+                                             reflow="true" styleClass="cityInfo-table" selectionMode="single" selection="#{cityInfoController.selected}"
+                                             rowKey="#{item.id}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom">
+                                    <f:facet name="header">
+                                        <div class="cityInfo-table-header">
+                                            <span style="font-weight: bold">CITY INFO</span>
+                                            <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                                                <p:inputText id="globalFilter" onkeyup="PF('dtCityInfo').filter()" placeholder="Search" />
+                                            </span>
+                                        </div>
+                                    </f:facet>
+
+                                    <p:ajax event="rowSelect" update="@obs(selection-changed)" />
+                                    <p:ajax event="rowUnselect" update="@obs(selection-changed)" />
+                                    <p:ajax event="rowSelectCheckbox" update="@obs(selection-changed)" />
+                                    <p:ajax event="rowUnselectCheckbox" update="@obs(selection-changed)" />
+                                    <p:ajax event="toggleSelect" update="@obs(selection-changed)" />
+
+                                    <p:column headerText="Zip Code" sortBy="#{item.zipCode}" filterBy="#{item.zipCode}">
+                                        <h:outputText value="#{item.zipCode}"/>
+                                    </p:column>
+                                    <p:column headerText="City Name" sortBy="#{item.cityName}" filterBy="#{item.cityName}">
+                                        <h:outputText value="#{item.cityName}"/>
+                                    </p:column>
+                                    <p:column headerText="State Name" sortBy="#{item.stateName}" filterBy="#{item.stateName}">
+                                        <h:outputText value="#{item.stateName}"/>
+                                    </p:column>
+                                    <p:column headerText="State Abbrev." sortBy="#{item.stateAbbrev}" filterBy="#{item.stateAbbrev}">
+                                        <h:outputText value="#{item.stateAbbrev}"/>
+                                    </p:column>
+
+
+
+                                    <p:column exportable="false">
+                                        <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-cityInfo"
+                                                         oncomplete="PF('manageCityInfoDialog').show()"
+                                                         styleClass="edit-button rounded-button ui-button-success" process="@this">
+                                            <f:setPropertyActionListener value="#{item}" target="#{cityInfoController.selected}" />
+                                            <p:resetInput target=":dialogs:manage-cityInfo" />
+                                        </p:commandButton>
+                                        <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
+                                                         process="@this"
+                                                         oncomplete="PF('deleteCityInfoDialog').show()">
+                                            <f:setPropertyActionListener value="#{item}" target="#{cityInfoController.selected}" />
+                                        </p:commandButton>
+                                    </p:column>
+
+                                </p:dataTable>
+                            </h:form>
+
+                            <h:form id="dialogs">
+                                <p:dialog header="City Info" showEffect="fade" modal="true" widgetVar="manageCityInfoDialog" 
+                                          responsive="true">
+                                    <p:outputPanel id="manage-cityInfo" class="ui-fluid">
+                                        <p:outputPanel rendered="#{not empty cityInfoController.selected}">
+
+                                            <div class="field">
+                                                <p:outputLabel value="Zip Code" for="zipCode" />
+                                                <p:inputText id="zipCode" value="#{cityInfoController.selected.zipCode}" title="Enter Zip Code." />
+                                            </div>
+                                            <div class="field">
+                                                <p:outputLabel value="City Name" for="cityName" />
+                                                <p:inputText id="cityName" value="#{cityInfoController.selected.cityName}" title="Enter City Name." />
+                                            </div>
+                                            <div class="field">
+                                                <p:outputLabel value="State Name" for="stateName" />
+                                                <p:inputText id="stateName" value="#{cityInfoController.selected.stateName}" title="Enter State Name." />
+                                            </div>
+                                            <div class="field">
+                                                <p:outputLabel value="State Abbrev" for="stateAbbrev" />
+                                                <p:inputText id="stateAbbrev" value="#{cityInfoController.selected.stateAbbrev}" title="Enter State Abbrev." />
+                                            </div>
+                                            <div class="field">
+                                                <p:outputLabel value="County" for="county" />
+                                                <p:inputText id="county" value="#{cityInfoController.selected.county}" title="Enter County." />
+                                            </div>
+
+                                        </p:outputPanel>
+                                    </p:outputPanel>
+
+                                    <f:facet name="footer">
+                                        <p:commandButton value="Save" icon="pi pi-check" actionListener="#{cityInfoController.save}"
+                                                         update="@obs(selection-edited) manage-cityInfo" process="manage-cityInfo @this" />
+                                        <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageCityInfoDialog').hide()"
+                                                         class="ui-button-secondary" type="button" />
+                                    </f:facet>
+                                </p:dialog>
+
+                                <p:confirmDialog widgetVar="deleteCityInfoDialog" showEffect="fade" width="300"
+                                                 message="Delete this city info?" header="Confirm" severity="warn">
+                                    <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{cityInfoController.destroy}"
+                                                     process="@this" update="@obs(selection-changed)"
+                                                     oncomplete="PF('deleteCityInfoDialog').hide()" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                                     onclick="PF('deleteCityInfoDialog').hide()" />
+                                </p:confirmDialog>
+
+                                <p:confirmDialog global="true" showEffect="fade" width="300">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                                                     icon="pi pi-times" />
+                                </p:confirmDialog>
+                            </h:form>
                         </div>
-                    </f:facet>
 
-                    <p:ajax event="rowSelect" update="@obs(selection-changed)" />
-                    <p:ajax event="rowUnselect" update="@obs(selection-changed)" />
-                    <p:ajax event="rowSelectCheckbox" update="@obs(selection-changed)" />
-                    <p:ajax event="rowUnselectCheckbox" update="@obs(selection-changed)" />
-                    <p:ajax event="toggleSelect" update="@obs(selection-changed)" />
-
-                    <p:column headerText="Zip Code" sortBy="#{item.zipCode}" filterBy="#{item.zipCode}">
-                        <h:outputText value="#{item.zipCode}"/>
-                    </p:column>
-                    <p:column headerText="City Name" sortBy="#{item.cityName}" filterBy="#{item.cityName}">
-                        <h:outputText value="#{item.cityName}"/>
-                    </p:column>
-                    <p:column headerText="State Name" sortBy="#{item.stateName}" filterBy="#{item.stateName}">
-                        <h:outputText value="#{item.stateName}"/>
-                    </p:column>
-                    <p:column headerText="State Abbrev." sortBy="#{item.stateAbbrev}" filterBy="#{item.stateAbbrev}">
-                        <h:outputText value="#{item.stateAbbrev}"/>
-                    </p:column>
-
-
-
-                    <p:column exportable="false">
-                        <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-cityInfo"
-                                         oncomplete="PF('manageCityInfoDialog').show()"
-                                         styleClass="edit-button rounded-button ui-button-success" process="@this">
-                            <f:setPropertyActionListener value="#{item}" target="#{cityInfoController.selected}" />
-                            <p:resetInput target=":dialogs:manage-cityInfo" />
-                        </p:commandButton>
-                        <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
-                                         process="@this"
-                                         oncomplete="PF('deleteCityInfoDialog').show()">
-                            <f:setPropertyActionListener value="#{item}" target="#{cityInfoController.selected}" />
-                        </p:commandButton>
-                    </p:column>
-
-                </p:dataTable>
-            </h:form>
-
-            <h:form id="dialogs">
-                <p:dialog header="City Info" showEffect="fade" modal="true" widgetVar="manageCityInfoDialog"
-                          responsive="true">
-                    <p:outputPanel id="manage-cityInfo" class="ui-fluid">
-                        <p:outputPanel rendered="#{not empty cityInfoController.selected}">
-
-                            <div class="field">
-                                <p:outputLabel value="Zip Code" for="zipCode" />
-                                <p:inputText id="zipCode" value="#{cityInfoController.selected.zipCode}" title="Enter Zip Code." />
-                            </div>
-                            <div class="field">
-                                <p:outputLabel value="City Name" for="cityName" />
-                                <p:inputText id="cityName" value="#{cityInfoController.selected.cityName}" title="Enter City Name." />
-                            </div>
-                            <div class="field">
-                                <p:outputLabel value="State Name" for="stateName" />
-                                <p:inputText id="stateName" value="#{cityInfoController.selected.stateName}" title="Enter State Name." />
-                            </div>
-                            <div class="field">
-                                <p:outputLabel value="State Abbrev" for="stateAbbrev" />
-                                <p:inputText id="stateAbbrev" value="#{cityInfoController.selected.stateAbbrev}" title="Enter State Abbrev." />
-                            </div>
-                            <div class="field">
-                                <p:outputLabel value="County" for="county" />
-                                <p:inputText id="county" value="#{cityInfoController.selected.county}" title="Enter County." />
-                            </div>
-
-                        </p:outputPanel>
-                    </p:outputPanel>
-
-                    <f:facet name="footer">
-                        <p:commandButton value="Save" icon="pi pi-check" actionListener="#{cityInfoController.save}"
-                                         update="@obs(selection-edited) manage-cityInfo" process="manage-cityInfo @this" />
-                        <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageCityInfoDialog').hide()"
-                                         class="ui-button-secondary" type="button" />
-                    </f:facet>
-                </p:dialog>
-
-                <p:confirmDialog widgetVar="deleteCityInfoDialog" showEffect="fade" width="300"
-                                 message="Delete this city info?" header="Confirm" severity="warn">
-                    <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{cityInfoController.destroy}"
-                                     process="@this" update="@obs(selection-changed)"
-                                     oncomplete="PF('deleteCityInfoDialog').hide()" />
-                    <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
-                                     onclick="PF('deleteCityInfoDialog').hide()" />
-                </p:confirmDialog>
-
-                <p:confirmDialog global="true" showEffect="fade" width="300">
-                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
-                                     icon="pi pi-times" />
-                </p:confirmDialog>
-            </h:form>
-        </div>
-
-    </h:body>
+                    </h:body>
+                </div>
+            </pe:layout>
+        </ui:define>
+    </ui:composition>
 </html>
