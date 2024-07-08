@@ -103,9 +103,18 @@
                                 </p:dataTable>
                             </h:form>
 
-                            <h:form id="dialogs">
-                                <p:dialog header="City Info" showEffect="fade" modal="false" widgetVar="manageCityInfoDialog" 
-                                          responsive="true">
+                           
+                        </div>
+
+                    </h:body>
+                </div>
+            </pe:layout>
+        </ui:define>
+		
+			<ui:define name = "dialogs"> 
+ <h:form id="dialogs">
+                                <p:dialog header="City Info" showEffect="fade" modal="true" widgetVar="manageCityInfoDialog" 
+                                          responsive="true" >
                                     <p:outputPanel id="manage-cityInfo" class="ui-fluid">
                                         <p:outputPanel rendered="#{not empty cityInfoController.selected}">
 
@@ -156,11 +165,6 @@
                                                      icon="pi pi-times" />
                                 </p:confirmDialog>
                             </h:form>
-                        </div>
-
-                    </h:body>
-                </div>
-            </pe:layout>
-        </ui:define>
+							</ui:define>
     </ui:composition>
 </html>
