@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:confirmDialog id="sessionDlg"
+		message="Your session time is about to expire, do you want to reset session time."
+		header="Reset Session Time?" severity="alert" widgetVar="idleDialog">
+
+        <p:commandButton  id="confirm" value="Yes"
+                onclick="PF('timer').stop(true);PF('timer').start();PF('idleDialog').hide();"/>
+
+	<p:commandButton id="Logout" value="LogMeOut"
+                oncomplete="idleDialog.hide()"
+                actionListener="#{timerControl.onTimeout()}" />
+
+	</p:confirmDialog>
+    </ui:composition>
+</html>
+
