@@ -21,18 +21,18 @@ public class CityInfoController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private List<CityInfo> items = null;
-    private CityInfo selected;
+    protected CityInfo selectedItem;
 
     public CityInfoController() {
         //Default constructor is intentionally empty.
     }
 
-    public CityInfo getSelected() {
-        return selected;
+    public CityInfo getSelectedItem() {
+        return selectedItem;
     }
 
-    public void setSelected(CityInfo selected) {
-        this.selected = selected;
+    public void setSelectedItem(CityInfo selectedItem) {
+        this.selectedItem = selectedItem;
     }
 
     public void clearItems() {
@@ -52,23 +52,26 @@ public class CityInfoController implements Serializable {
     }
 
     public void openEdit() {
-        if (selected != null) {
+        if (selectedItem != null) {
             PrimeFaces.current().executeScript("PF('manageCityInfoDialog').show()");
         }
     }
 
     public CityInfo openCreate() {
-        selected = new CityInfo();
-        return selected;
+        selectedItem = new CityInfo();
+        return selectedItem;
     }
 
     public void save() {
-        if (this.selected.getId() == 0) {
-            selected.setId(this.items.size() + 5);
-            this.items.add(selected);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Added"));
+        String cityName = selectedItem.getCityName();
+        String stateName = selectedItem.getStateName();
+        
+        if (this.selectedItem.getId() == 0) {
+            selectedItem.setId(this.items.size() + 5);
+            this.items.add(selectedItem);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info for " + cityName + ", " + stateName + " Added"));
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Updated"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info for " + cityName + ", " + stateName + " Updated"));
         }
 
         PrimeFaces.current().executeScript("PF('manageCityInfoDialog').hide()");
@@ -84,18 +87,21 @@ public class CityInfoController implements Serializable {
     }
 
     public boolean hasSelectedRow() {
-        return this.selected != null;
+        return this.selectedItem != null;
     }
 
     public void destroy() {
-        this.items.remove(selected);
-        this.setSelected(null);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info Removed"));
+        String cityName = selectedItem.getCityName();
+        String stateName = selectedItem.getStateName();
+        
+        this.items.remove(selectedItem);
+        this.setSelectedItem(null);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("City Info for " + cityName + ", " + stateName + " Removed"));
         PrimeFaces.current().ajax().update("form:messages", "form:dt-cityInfo");
     }
 
     public void handleClose(CloseEvent event) {
-        this.setSelected(null);
+        this.setSelectedItem(null);
     }
 
     public void handleCloseEdit(CloseEvent event) {

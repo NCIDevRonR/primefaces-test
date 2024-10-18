@@ -24,6 +24,11 @@
             <artifactId>primefaces</artifactId>
             <version>14.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>14.0.1</version> <!-- or the appropriate version -->
+        </dependency>
 
         <!-- javax.* APIs -->
         <dependency>
