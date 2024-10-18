@@ -8,13 +8,16 @@
 	xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>Login</title>
+        <title>PrimeFaces Test</title>
+        <h:outputScript name="test.js" />
+        <h:outputStylesheet name="test.css" />
     </h:head>
     <h:body>
-        <f:event type="preRenderView" listener="#{loginBean.login}"/>
-        <div align="center">
-            <h1> An error has occurred, contact your System Administrator.</h1>
-            <p:messages style="width: 50%"/>   
-        </div>
+
+        <h1>#{testView.string}</h1>
+        <h:form id="frmTest">
+
+        </h:form>
+
     </h:body>
 </html>

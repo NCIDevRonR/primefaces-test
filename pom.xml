@@ -104,7 +104,29 @@
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
-    </dependencies>
+    <!-- Jakarta Faces API -->
+<!--    <dependency>
+        <groupId>jakarta.faces</groupId>
+        <artifactId>jakarta.faces-api</artifactId>
+        <version>2.3.2</version>
+    </dependency>-->
+
+    <!-- Servlet API -->
+<!--    <dependency>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>5.0.0</version>
+    </dependency>-->
+
+    <!-- Add other necessary dependencies (e.g., Shiro, if required) -->
+<!--    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-api</artifactId>
+      <version>9.0.0</version>
+      <type>jar</type>
+    </dependency>-->
+    
+  </dependencies>
 
     <repositories>
       <repository>
