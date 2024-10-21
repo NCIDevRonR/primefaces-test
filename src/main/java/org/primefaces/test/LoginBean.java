@@ -19,7 +19,7 @@ public class LoginBean {
     public void login() throws IOException {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String subjectDN = request.getHeader("MYAPP_X-CertSubj");
-
+        System.out.println("subjectDN = " + subjectDN);
         if (subjectDN == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Error", "SubjectDN is null. Please try again."));
             return;
